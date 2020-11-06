@@ -4,7 +4,6 @@
 # Copyright (c) 2020, The Alan Turing Institute
 # License: MIT
 # Date: 2020-11-06
-#
 
 SHELL := bash
 .SHELLFLAGS := -eu -o pipefail -c
@@ -33,6 +32,15 @@ help:
 
 bump: ./bump_version.sh ## Bump the CleverCSV version to that on PyPI
 	./bump_version.sh
+
+########
+# Push #
+########
+
+.PHONY: push
+
+push: ## Helper to remember to push _with_ tags
+	git push -u --tags origin master
 
 ###########
 # Testing #
