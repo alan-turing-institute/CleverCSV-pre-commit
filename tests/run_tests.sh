@@ -48,6 +48,8 @@ if [ $? -eq 0 ]
 then
 	echo "An error occurred, pre-commit didn't stop the commit as expected"
 	exit 1
+else
+	echo "Commit failed as expected"
 fi
 
 # Now add them again (as clevercsv standardize has edited them)
@@ -59,6 +61,8 @@ if [ $? -ne 0 ]
 then
 	echo "Something went wrong with the commit that was supposed to work."
 	exit 2
+else
+	echo "Commit passed as expected"
 fi
 
 # Go back to the original directory
