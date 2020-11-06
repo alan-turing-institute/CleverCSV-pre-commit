@@ -28,10 +28,13 @@ help:
 # Bump version #
 ################
 
-.PHONY: bump
+.PHONY: bump bump_nogit
 
 bump: ./bump_version.sh ## Bump the CleverCSV version to that on PyPI
 	./bump_version.sh
+
+bump_nogit: ./bump_version.sh ## Bump the CleverCSV version, but don't git commit
+	./bump_version.sh no-git
 
 ########
 # Push #

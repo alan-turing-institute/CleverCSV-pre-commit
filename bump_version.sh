@@ -8,6 +8,16 @@
 
 set -e -u
 
+DO_GIT=true
+
+if [ $# -gt 1 ]
+then
+	if [ "$1" == "no-git" ]
+	then
+		DO_GIT=false
+	fi
+fi
+
 VERSION_FILE=".version"
 PYPI_JSON_URL="https://pypi.org/pypi/clevercsv/json"
 
@@ -15,6 +25,9 @@ latest=$(curl -s ${PYPI_JSON_URL} |  jq -r '.releases | keys | .[]' | sort -V | 
 
 echo ${latest} > ${VERSION_FILE}
 
-git add ${VERSION_FILE}
-git commit -m "[BUMP] Increment CleverCSV package version to ${latest}" ${VERSION_FILE}
-git tag "v${latest}"
+if [ ${DO_GIT} ]
+then
+	git add ${VERSION_FILE}
+	git commit -m "[BUMP] Increment CleverCSV package version to ${latest}" ${VERSION_FILE}
+	git tag "v${latest}"
+fi
