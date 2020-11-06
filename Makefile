@@ -62,6 +62,7 @@ test: venv ## Run the tests for the pre-commit hook
 
 release: make_release.py ## Prepare a release of this package
 	python $<
+
 #######################
 # Virtual environment #
 #######################
@@ -77,3 +78,11 @@ $(VENV_DIR)/bin/activate:
 
 clean_venv: ## Clean up the virtual environment
 	rm -rf $(VENV_DIR)
+
+############
+# Clean up #
+############
+
+.PHONY: clean
+
+clean: clean_venv ## Clean up
