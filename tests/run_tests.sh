@@ -27,7 +27,7 @@ cp ${HERE}/*.csv .
 cat <<EOF > .pre-commit-config.yaml
 repos:
   - repo: https://github.com/alan-turing-institute/CleverCSV-pre-commit
-    rev: ${VERSION}
+    rev: v${VERSION}
     hooks:
       - id: clevercsv-standardize
 EOF

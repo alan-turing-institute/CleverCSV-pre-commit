@@ -17,4 +17,4 @@ echo ${latest} > ${VERSION_FILE}
 
 git add ${VERSION_FILE}
 git commit -m "[BUMP] Increment CleverCSV package version to ${latest}" ${VERSION_FILE}
-git tag ${latest}
+git tag "v${latest}"

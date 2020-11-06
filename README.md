@@ -11,7 +11,7 @@ configuration to your ``.pre-commit-config.yaml`` file:
 ```yaml
 repos:
   - repo: https://github.com/alan-turing-institute/CleverCSV-pre-commit
-    rev: 0.6.6      # or any later version
+    rev: v0.6.6      # or any later version
     hooks:
       - id: clevercsv-standardize
 ```
