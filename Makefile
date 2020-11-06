@@ -54,6 +54,14 @@ push: ## Helper to remember to push _with_ tags
 test: venv ## Run the tests for the pre-commit hook
 	source $(VENV_DIR)/bin/activate && ./tests/run_tests.sh
 
+###########
+# Release #
+###########
+
+.PHONY: release
+
+release: make_release.py ## Prepare a release of this package
+	python $<
 #######################
 # Virtual environment #
 #######################
