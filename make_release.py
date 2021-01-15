@@ -12,9 +12,9 @@ Date: 2020-11-06
 
 """
 
-import sys
 import colorama
-import os
+import subprocess
+import sys
 import webbrowser
 
 URLS = {
@@ -80,7 +80,7 @@ class Step:
     def do_cmd(self, cmd):
         cprint(f"Going to run: {cmd}", color="magenta", style="bright")
         wait_for_enter()
-        os.system(cmd)
+        subprocess.check_call(cmd, shell=True)
 
 
 class GitToMaster(Step):
@@ -90,7 +90,12 @@ class GitToMaster(Step):
 
 
 class RunTests(Step):
+    def __init__(self, message=None):
+        self._msg = message
+
     def action(self, context):
+        if self._msg:
+            self.instruct(self._msg)
         self.do_cmd("make test")
 
 
@@ -128,11 +133,10 @@ def main(target=None):
     procedure = [
         ("gittomaster", GitToMaster()),
         ("clean", MakeClean()),
-        ("runtests", RunTests()),
-        ("bumpversion_nogit", BumpVersion(do_git=False)),
-        ("runtests", RunTests()),
-        ("bumpversion", BumpVersion()),
-        ("push", PushToGitHub(),),
+        ("runtests", RunTests("Check if previous version still works")),
+        ("bumpversion", BumpVersion(do_git=True)),
+        ("push", PushToGitHub()),
+        ("runtests", RunTests("Check if new version works")),
         # ("travis", WaitForTravis()), TODO: Add CI integration
     ]
     context = {}
