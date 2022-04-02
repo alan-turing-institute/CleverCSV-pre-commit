@@ -29,5 +29,5 @@ if [ ${DO_GIT} ]
 then
 	git add ${VERSION_FILE}
 	git commit -m "[BUMP] Increment CleverCSV package version to ${latest}" ${VERSION_FILE}
-	git tag "v${latest}"
+	git tag -s "v${latest}"
 fi
