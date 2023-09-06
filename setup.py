@@ -9,7 +9,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(here, ".version")) as fp:
     CLEVERCSV_VERSION = fp.read().strip()
 
-REQUIRED = [f"clevercsv[full]=={CLEVERCSV_VERSION}"]
+REQUIRED = [f"clevercsv[precommit]=={CLEVERCSV_VERSION}"]
 
 setup(
     name="clevercsv_pre_commit_dummy_package",
