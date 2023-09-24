@@ -11,9 +11,14 @@ configuration to your ``.pre-commit-config.yaml`` file:
 ```yaml
 repos:
   - repo: https://github.com/alan-turing-institute/CleverCSV-pre-commit
-    rev: v0.6.6      # or any later version
+    rev: v0.8.2      # or any later version
     hooks:
       - id: clevercsv-standardize
 ```
 
 Finally, run ``pre-commit install`` to register your pre-commit hook.
+
+## Notes
+
+Due to an error the commit hook revision `v0.8.1` is not functional, please 
+use `v0.8.2` instead.
